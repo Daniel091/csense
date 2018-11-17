@@ -7,7 +7,6 @@ API_KEY = "FA9119AFBC"
 
 
 # will return [{'success': {'username': 'FA9119AFBC'}}]
-# As it turns out the data you pass is very important
 def get_api():
     data = {'devicetype': 'my app'}
     url = 'http://' + IP + '/api'
@@ -41,8 +40,34 @@ def get_all_groups():
         print(data)
 
         for group in data:
-            print(group['id'])
+            group_dict = data[group]
+
+
+# gets id for group_name
+def get_group_id(group_name):
+    url = 'http://' + IP + '/api/' + API_KEY + '/groups'
+    res = requests.get(url)
+
+    if res.ok:
+        data = json.loads(res.content)
+        for group in data:
+            group_dict = data[group]
+            if group_dict['name'] == group_name:
+                return group_dict['id']
+
+    return None
+
+
+# PUT /api/<apikey>/groups/<id>/action
+def set_group_state(group_id, **kwargs):
+    url = 'http://' + IP + '/api/' + API_KEY + '/groups/' + group_id + '/action'
+
+    res = requests.put(url, data=json.dumps(kwargs))
+    return res.ok
 
 
 # get_all_lights()
-get_all_groups()
+# get_all_groups()
+group_id = get_group_id('Stockwerk 31')
+print(group_id)
+set_group_state(group_id, toggle=True, bri=129)
