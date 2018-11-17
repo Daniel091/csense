@@ -13,3 +13,6 @@ Statische IP: 131.159.198.85 (via dhcpcd.conf festgelegt)
 
 # Lichtsteuerung
 deCONZ gateway bietet eine RestAPI und eine WebGUI (http://131.159.198.85/)
+
+# Rest-API Docs
+http://dresden-elektronik.github.io/deconz-rest-doc/

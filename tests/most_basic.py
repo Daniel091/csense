@@ -31,4 +31,18 @@ def get_all_lights():
         print(data)
 
 
-get_all_lights()
+# GET Request to /api/<apikey>/groups
+def get_all_groups():
+    url = 'http://' + IP + '/api/' + API_KEY + '/groups'
+    response = requests.get(url)
+    if response.ok:
+        print("Response Okay")
+        data = json.loads(response.content)
+        print(data)
+
+        for group in data:
+            print(group['id'])
+
+
+# get_all_lights()
+get_all_groups()
