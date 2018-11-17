@@ -27,14 +27,21 @@ changeColor.onclick = function (ele) {
  */
 
 let auto_switch = document.getElementById('auto_switch');
-let checked = false;
+var checked = false;
+var timerTask;
+
 auto_switch.onclick = function () {
     checked = !checked;
 
     if (checked) {
         get_color();
+        timerTask = setInterval(get_color, 1000);
+    } else {
+        clearInterval(timerTask);
+        console.log("Stopped Task");
     }
 };
+
 
 function get_color() {
     chrome.tabs.captureVisibleTab(null, {quality: 50}, function (image) {
@@ -43,7 +50,11 @@ function get_color() {
 
 
         var tmp = document.getElementById('current_image');
-        console.log(getAverageRGB(tmp));
+        if (tmp !== undefined) {
+            console.log(getAverageRGB(tmp));
+        } else {
+            console.log("No Image Available");
+        }
 
     });
 }
@@ -70,12 +81,14 @@ function getAverageRGB(imgEl) {
 
     context.drawImage(imgEl, 0, 0);
 
-    try {
-        data = context.getImageData(0, 0, width, height);
-    } catch (e) {
-        /* security error, img on diff domain */
-        alert('x');
-        return defaultRGB;
+    if (width !== 0 && height !== 0) {
+        try {
+            data = context.getImageData(0, 0, width, height);
+        } catch (e) {
+            return undefined;
+        }
+    } else {
+        return undefined;
     }
 
     length = data.data.length;
@@ -93,5 +106,4 @@ function getAverageRGB(imgEl) {
     rgb.b = ~~(rgb.b / count);
 
     return rgb;
-
 }
