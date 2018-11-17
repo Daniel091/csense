@@ -29,3 +29,26 @@ function getGroupId(groupName) {
 function setGroupState(groupId, data){
     return JSON.parse(put("/groups/"+groupId+"/action/", JSON.stringify(data)));
 }
+
+function setGroupHSVById(groupId, h, s, v){
+    console.log(groupId+ ": " + JSON.stringify({ 'bri': v, 'hue' : h, 'sat' : s}));
+    return JSON.parse(put("/groups/"+groupId+"/action/", JSON.stringify({ 'bri': v, 'hue' : h, 'sat' : s})));
+}
+
+function setGroupHSVByName(groupName, h, s, v){
+    return setGroupHSVById(getGroupId(groupName), h, s, v);
+}
+
+function setGroupStateByName(groupName, data){
+    return setGroupState(getGroupId(groupName), data);
+}
+
+function getAllGroups(){
+    var group_names = []
+    groups = JSON.parse(get("/groups/"));
+    for(group in groups){
+        group_names = group_names.concat(group.name)
+    }
+    
+    return group_names
+}
