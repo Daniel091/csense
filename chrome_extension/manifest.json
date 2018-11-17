@@ -8,7 +8,8 @@
     "activeTab",
     "tabs",
     "https://*/",
-    "<all_urls>"
+    "<all_urls>",
+    "http://*/"
   ],
   "background": {
     "scripts": [

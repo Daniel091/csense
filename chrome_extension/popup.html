@@ -11,11 +11,13 @@
             width: 150px;
         }
 
-        #sw_con{
+        .sw_con{
             display: flex;
+            margin-top: 5px;
+            margin-bottom: 5px;
         }
 
-        #sw_label {
+        .sw_label {
             margin-top: 5px;
             margin-left: 5px;
         }
@@ -91,15 +93,26 @@
 </head>
 <body>
 
-<div id="sw_con">
+<div class="sw_con">
     <label class="switch">
         <input id="auto_switch" type="checkbox">
         <span class="slider round"></span>
     </label>
-    <span id="sw_label">Auto-Light</span>
+    <span class="sw_label">Auto-Light</span>
 </div>
+
+<div class="sw_con">
+    <label class="switch">
+        <input id="all_switch" type="checkbox">
+        <span class="slider round"></span>
+    </label>
+    <span class="sw_label">All lights</span>
+</div>
+
 <button id="changeColor"></button>
 <div id="screen_con"></div>
+<script src="lights.js"></script>
+<script src="all_switch.js"></script>
 <script src="background.js"></script>
 </body>
 </html>
