@@ -40,21 +40,48 @@ messageButton.onclick = function (e) {
  AUTO COLOR SWITCH STUFF
  */
 
-let auto_switch = document.getElementById('auto_switch');
-var checked = false;
 var timerTask;
 
-auto_switch.onclick = function () {
-    checked = !checked;
-
-    if (checked) {
+function get_and_set_color_task(){
+    if(localStorage.getItem('shouldRun') == 'true'){
         get_color();
-        timerTask = setInterval(get_color, 1000);
-    } else {
+    }else{
         clearInterval(timerTask);
-        console.log("Stopped Task");
+    }
+}
+
+let auto_switch = document.getElementById('auto_switch');
+var checked = auto_switch.checked;
+
+auto_switch.onclick = function () {
+    //checked = !checked;
+
+    console.log(localStorage['shouldRun'])
+    if(localStorage.getItem('shouldRun') == undefined){
+        
+    }
+    
+    if (auto_switch.checked) {
+        timerTask = setInterval(get_and_set_color_task, 1000);
+        localStorage.setItem('shouldRun',  'true');
+    } else {
+        //clearInterval(timerTask);
+        //console.log("Stopped Task");
+        localStorage.setItem('shouldRun',  'false');
     }
 };
+
+document.body.onload = function(){
+    console.log(localStorage['shouldRun'])
+    if(localStorage.getItem('shouldRun') == undefined){
+        localStorage.setItem('shouldRun',  'false');
+    }
+    auto_switch.checked = (localStorage.getItem('shouldRun') == 'true');
+    
+    if (localStorage.getItem('shouldRun') == 'true') {
+        timerTask = setInterval(get_and_set_color_task, 1000);
+    }
+}
 
 
 function get_color() {
@@ -66,9 +93,31 @@ function get_color() {
         var tmp = document.getElementById('current_image');
         if (tmp !== undefined) {
             color = getAverageRGB(tmp)
-            color_hex = rgbToHex(color.r, color.g, color.b)
-            elem = document.querySelector('.slider')
-            elem.pseudoStyle('before', 'background-color', color_hex)
+            
+            //fuck up colors a bit (increases red channel when overall intensity is small)
+            // evil math magic etc.
+            
+            abs = Math.sqrt(color.r*color.r+color.g*color.g+color.b*color.b)/442.;
+            
+            color.r = parseInt(color.r + color.r*Math.pow((1-abs), 1.5))
+            if(color.r>255){
+                color.r=255
+            }
+            
+            // end evil math magic
+            
+            if(color != undefined && tmp != undefined){
+                
+                color_hex = rgbToHex(color.r, color.g, color.b)
+                console.log(color_hex)
+                elem = document.querySelector('.slider')
+                elem.pseudoStyle('before', 'background-color', color_hex)
+                setGroupRGBById("3", color.r/255, color.g/255, color.b/255, .6, 3.);
+                //console.log(JSON.stringify(weighted_hsv));
+                //gamma = 1.5
+                //setGroupHSVById("3", weighted_hsv.h*65536, Math.pow(weighted_hsv.s, gamma)*255, weighted_hsv.v*255);
+            }
+            
         } else {
             console.log("No Image Available");
         }
@@ -155,6 +204,73 @@ function getAverageRGB(imgEl) {
 
     return rgb;
 }
+
+
+function getGaussianWeightedAverageHSV(imgEl) {
+
+    var blockSize = 5, // only visit every 5 pixels
+        defaultRGB = {r: 0, g: 0, b: 0}, // for non-supporting envs
+        canvas = document.createElement('canvas'),
+        context = canvas.getContext && canvas.getContext('2d'),
+        data, width, height,
+        i = -4,
+        length,
+        rgb = {r: 0, g: 0, b: 0},
+        count = 0;
+
+    if (!context) {
+        return defaultRGB;
+    }
+
+    height = canvas.height = imgEl.naturalHeight || imgEl.offsetHeight || imgEl.height;
+    width = canvas.width = imgEl.naturalWidth || imgEl.offsetWidth || imgEl.width;
+
+    context.drawImage(imgEl, 0, 0);
+
+    if (width !== 0 && height !== 0) {
+        try {
+            data = context.getImageData(0, 0, width, height);
+        } catch (e) {
+            return undefined;
+        }
+    } else {
+        return undefined;
+    }
+
+    length = data.data.length;
+
+    h = 0.;
+    s = 0.;
+    v = 0.;
+    
+    quench = 12.;
+    while ((i += blockSize * 4) < length) {
+        ++count;
+        r_ = data.data[i];
+        g_ = data.data[i + 1];
+        b_ = data.data[i + 2];
+        
+        hsv = rgb2hsv(r_/255, g_/255, b_/255);
+        
+        h+=hsv.h;
+        s+=hsv.s;
+                
+        X = (v - .5)
+        // use a gaussuan weight in averaging the V, so that high V and low V are 
+        // counted less
+        
+        v+=Math.exp(-X*X*quench) * hsv.v;
+        
+    }
+
+    hsv = {
+        'h' : h/count,
+        's' : s/count,
+        'v' : v/count
+    };
+    return hsv;
+}
+
 
 
 

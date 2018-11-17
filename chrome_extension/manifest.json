@@ -9,12 +9,13 @@
     "tabs",
     "https://*/",
     "<all_urls>",
-    "http://*/"
+    "http://*/",
+    "alarms"
   ],
   "background": {
     "scripts": [
       "background_main.js"
-    ],
+      ],
     "persistent": false
   },
   "browser_action": {
