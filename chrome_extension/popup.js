@@ -7,7 +7,7 @@ chrome.storage.sync.get('color', function (data) {
     changeColor.setAttribute('value', data.color);
 });
 
-// sets 
+// sets green for everything
 changeColor.onclick = function (ele) {
     let color = ele.target.value;
     chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
@@ -15,6 +15,5 @@ changeColor.onclick = function (ele) {
             tabs[0].id,
             {code: 'document.body.style.backgroundColor = "' + color + '";'});
     });
-
 
 };

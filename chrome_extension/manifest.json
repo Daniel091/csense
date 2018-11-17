@@ -1,11 +1,11 @@
 {
-  "name": "Getting Started Example",
-  "version": "1.0",
-  "description": "Build an Extension!",
+  "name": "CSense-Extension",
+  "version": "0.1",
+  "description": "CSense Extension for Light Control",
   "permissions": [
     "storage",
     "declarativeContent",
-     "activeTab"
+    "activeTab"
   ],
   "background": {
     "scripts": [
@@ -13,8 +13,9 @@
     ],
     "persistent": false
   },
-  "page_action": {
+  "browser_action": {
     "default_popup": "popup.html",
+    "default_title": "CSense-Extension",
     "default_icon": {
       "16": "images/get_started16.png",
       "32": "images/get_started32.png",
