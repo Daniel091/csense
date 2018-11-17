@@ -6,16 +6,29 @@ var API_KEY = "FA9119AFBC"
 
 function get(query) {
     var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-        document.getElementById("response").innerHTML = xhttp.responseText;
-        }
-    };
-
-    xhttp.open("GET", url + "/" + API_KEY + "/" + query, true);
+    xhttp.open("GET", url + "/" + API_KEY + "/" + query, false);
     xhttp.send(); 
+    return xhttp.responseText;
 }
 
-function getGroupId() {
-    get("lights")
+function put(query, data){
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("PUT", url + "/" + API_KEY + "/" + query, false);
+    xhttp.setRequestHeader('Content-type','application/json; charset=utf-8');
+    xhttp.send(data);
+    return xhttp.responseText;
+}
+
+function getGroupId(groupName) {
+    groups = JSON.parse(get("groups"));
+    for(group in groups){
+        if(JSON.stringify(groups[group].name) == groupName){
+            return group
+        }
+    }
+    return -1
+}
+
+function setGroupState(groupId, data){
+    return JSON.parse(put(groupId+"/action/", JSON.stringify(data)));
 }
