@@ -10,17 +10,31 @@ chrome.storage.sync.get('color', function (data) {
     changeColor.setAttribute('value', data.color);
 });
 
+chrome.runtime.onMessage.addListener(
+    function(request, sender, sendResponse) {
+        console.log(sender.tab ?
+                  "from a content script:" + sender.tab.url :
+                  "from the extension");
+        console.log(request)
+    });
+
 // sets green for everything
 changeColor.onclick = function (ele) {
-    let color = ele.target.value;
-    chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
-        console.log(tabs);
-        chrome.tabs.executeScript(
-            tabs[0].id,
-            {code: 'document.body.style.backgroundColor = "' + color + '";'});
-    });
+    // let color = ele.target.value;
+    // chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
+    //     console.log(tabs);
+    //     chrome.tabs.executeScript(
+    //         tabs[0].id,
+    //         {code: 'document.body.style.backgroundColor = "' + color + '";'});
+    // });
 };
 
+let messageButton = document.getElementById('message-button')
+messageButton.onclick = function (e) {
+    chrome.runtime.sendMessage({greeting: "hello"}, function(response) {
+        console.log(response);
+    });
+}
 
 /*
  AUTO COLOR SWITCH STUFF
@@ -51,7 +65,10 @@ function get_color() {
 
         var tmp = document.getElementById('current_image');
         if (tmp !== undefined) {
-            console.log(getAverageRGB(tmp));
+            color = getAverageRGB(tmp)
+            color_hex = rgbToHex(color.r, color.g, color.b)
+            elem = document.querySelector('.slider')
+            elem.pseudoStyle('before', 'background-color', color_hex)
         } else {
             console.log("No Image Available");
         }
@@ -59,6 +76,37 @@ function get_color() {
     });
 }
 
+var UID = {
+	_current: 0,
+	getNew: function(){
+		this._current++;
+		return this._current;
+	}
+};
+
+function componentToHex(c) {
+    var hex = c.toString(16);
+    return hex.length == 1 ? "0" + hex : hex;
+}
+
+function rgbToHex(r, g, b) {
+    return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+}
+
+HTMLElement.prototype.pseudoStyle = function(element,prop,value){
+	var _this = this;
+	var _sheetId = "pseudoStyles";
+	var _head = document.head || document.getElementsByTagName('head')[0];
+	var _sheet = document.getElementById(_sheetId) || document.createElement('style');
+	_sheet.id = _sheetId;
+	var className = "pseudoStyle" + UID.getNew();
+	
+	_this.className +=  " "+className; 
+	
+	_sheet.innerHTML += " ."+className+":"+element+"{"+prop+":"+value+"}";
+	_head.appendChild(_sheet);
+	return this;
+};
 
 function getAverageRGB(imgEl) {
 
@@ -107,3 +155,6 @@ function getAverageRGB(imgEl) {
 
     return rgb;
 }
+
+
+
