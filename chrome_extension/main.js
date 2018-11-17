@@ -9,6 +9,9 @@ chrome.runtime.onInstalled.addListener(function () {
             console.log("Got Message!");
             if (request.image) {
                 let img = document.createElement('img');
+                img.setAttribute("src", request.image);
+                img.setAttribute("crossorigin", "anonymous");
+
                 console.log(getAverageRGB(img));
                 sendResponse({farewell: "goodbye"});
             }

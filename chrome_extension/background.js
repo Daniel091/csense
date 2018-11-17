@@ -12,7 +12,6 @@ chrome.storage.sync.get('color', function (data) {
 
 // sets green for everything
 changeColor.onclick = function (ele) {
-    console.log('Button Click');
     let color = ele.target.value;
     chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
         console.log(tabs);
@@ -30,40 +29,22 @@ changeColor.onclick = function (ele) {
 let auto_switch = document.getElementById('auto_switch');
 let checked = false;
 auto_switch.onclick = function () {
-    console.log('Checkbox Click');
     checked = !checked;
 
     if (checked) {
-        console.log('Checkbox Checked');
         get_color();
     }
 };
 
-let colorThief = new ColorThief();
-
 function get_color() {
     chrome.tabs.captureVisibleTab(null, {quality: 50}, function (image) {
-        console.log("Capture visible tap");
-
-        /*
-        chrome.extension.sendMessage({image: image}, function (response) {
-            console.log(response);
-        });*/
-
-
-        //let img = document.createElement('img');
-        //img.setAttribute("scr", image);
-        //img.setAttribute("id", "current_image");
-
-
-
         let screen_con = document.getElementById('screen_con');
-        screen_con.innerHTML = "<img id='current_image' src='" + image + "'/>";
+        screen_con.innerHTML = "<img style='display:none' id='current_image' src='" + image + "'/>";
 
-        /*
+
         var tmp = document.getElementById('current_image');
-        console.log(getAverageRGB(tmp));*/
-        console.log(colorThief.getColor(image));
+        console.log(getAverageRGB(tmp));
+
     });
 }
 
