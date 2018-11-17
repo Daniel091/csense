@@ -10,17 +10,31 @@ chrome.storage.sync.get('color', function (data) {
     changeColor.setAttribute('value', data.color);
 });
 
+chrome.runtime.onMessage.addListener(
+    function(request, sender, sendResponse) {
+        console.log(sender.tab ?
+                  "from a content script:" + sender.tab.url :
+                  "from the extension");
+        console.log(request)
+    });
+
 // sets green for everything
 changeColor.onclick = function (ele) {
-    let color = ele.target.value;
-    chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
-        console.log(tabs);
-        chrome.tabs.executeScript(
-            tabs[0].id,
-            {code: 'document.body.style.backgroundColor = "' + color + '";'});
-    });
+    // let color = ele.target.value;
+    // chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
+    //     console.log(tabs);
+    //     chrome.tabs.executeScript(
+    //         tabs[0].id,
+    //         {code: 'document.body.style.backgroundColor = "' + color + '";'});
+    // });
 };
 
+let messageButton = document.getElementById('message-button')
+messageButton.onclick = function (e) {
+    chrome.runtime.sendMessage({greeting: "hello"}, function(response) {
+        console.log(response);
+    });
+}
 
 /*
  AUTO COLOR SWITCH STUFF
@@ -141,3 +155,6 @@ function getAverageRGB(imgEl) {
 
     return rgb;
 }
+
+
+
