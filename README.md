@@ -1,18 +1,16 @@
-Hackatum 2018
+Hackatum 2018 - CSense Chrome Extension 
 
-## Projekte
-Ledvance: Smart home, IoT, Beleuchtung im haus
+## Projekt
+"Human Centric lightning"
+Lights will adjust to the main color of the page your web browser is displaying.
 
-Telekom: Sicherheitsbewusstsein erhöhen
-
-Link für Alle Projekte: https://www.notion.so/Challenges-932942003dbd45f3b1ac19ef97a93505
-
-
-## Infos über Raspbee
-Statische IP: 131.159.198.85 (via dhcpcd.conf festgelegt)
-
-# Lichtsteuerung
-deCONZ gateway bietet eine RestAPI und eine WebGUI (http://131.159.198.85/)
+## Method
+Script screenshots current tab window, in abysmal quality.
+Script injects image to DOM and average color is computed.
+Color is further processed by non-linear color mapping.
 
 # Rest-API Docs
 http://dresden-elektronik.github.io/deconz-rest-doc/
+
+# Chrome Extension Infos
+https://developer.chrome.com/extensions/getstarted
