@@ -10,7 +10,7 @@ chrome.storage.onChanged.addListener(function (changes, namespace) {
         chrome.storage.sync.get('shouldRun', function (data) {
 
             if (data.shouldRun) {
-                task_timer = setInterval(snap_fun, 400);
+                task_timer = setInterval(snap_fun, 500);
                 chrome.browserAction.setIcon({path: "images/on/csense_128x128_on.png"});
             } else {
                 clearInterval(task_timer);
