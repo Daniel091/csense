@@ -16,6 +16,12 @@ chrome.storage.onChanged.addListener(function (changes, namespace) {
 
         });
     }
+    
+    if('lights_on_off' in changes){
+        chrome.storage.sync.get('lights_on_off', function (data) {
+            chrome.runtime.sendMessage({lights_on_off: data.lights_on_off}, undefined);
+        });
+    }
 });
 
 function snap_fun() {

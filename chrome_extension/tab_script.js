@@ -28,6 +28,10 @@ document.body.onload = function () {
     chrome.storage.sync.get('shouldRun', function (data) {
         auto_switch.checked = data.shouldRun;
     });
+    
+    chrome.storage.sync.get('lights_on_off', function (data) {
+        all_switch.checked = data.lights_on_off;
+    });
 };
 
 

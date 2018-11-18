@@ -16,6 +16,10 @@ chrome.runtime.onMessage.addListener(
 
             setGroupRGBById("3", color.r / 255, color.g / 255, color.b / 255, .6, 3.);
         }
+        if(request.lights_on_off){
+            console.log("asfs")
+            setGroupState("3", {'on': request.lights_on_off});
+        }
     }
 );
 
