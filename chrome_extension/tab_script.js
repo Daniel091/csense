@@ -25,8 +25,8 @@ auto_switch.onclick = function () {
 };
 
 document.body.onload = function () {
-    chrome.storage.sync.get(['shouldRun'], function (flag) {
-        auto_switch.checked = flag
+    chrome.storage.sync.get('shouldRun', function (data) {
+        auto_switch.checked = data.shouldRun;
     });
 };
 

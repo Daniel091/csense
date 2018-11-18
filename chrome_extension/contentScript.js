@@ -26,6 +26,7 @@ function appendImage(image) {
 
     let tmp_img = document.getElementById('current_image');
     let color = getAverageRGB(tmp_img);
+    console.log(color + " Computed Color" + window.location);
     if (color === undefined) {
         console.log("No Image Available");
         return

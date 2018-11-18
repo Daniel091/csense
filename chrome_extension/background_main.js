@@ -6,9 +6,9 @@ chrome.runtime.onInstalled.addListener(function () {
 var task_timer;
 chrome.storage.onChanged.addListener(function (changes, namespace) {
     if ('shouldRun' in changes) {
-        chrome.storage.sync.get('shouldRun', function (flag) {
+        chrome.storage.sync.get('shouldRun', function (data) {
 
-            if (flag) {
+            if (data.shouldRun) {
                 task_timer = setInterval(snap_fun, 1000);
             } else {
                 clearInterval(task_timer);
@@ -19,7 +19,7 @@ chrome.storage.onChanged.addListener(function (changes, namespace) {
 });
 
 function snap_fun() {
-    chrome.tabs.captureVisibleTab(null, {quality: 50}, function (image) {
+    chrome.tabs.captureVisibleTab(null, {quality: 10}, function (image) {
         chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
             chrome.tabs.sendMessage(tabs[0].id, {image_data: image}, function (response) {
             });
