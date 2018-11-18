@@ -10,7 +10,7 @@ chrome.runtime.onMessage.addListener(
             abs = Math.sqrt(color.r * color.r + color.g * color.g + color.b * color.b) / 442.;
             color.r = parseInt(color.r + color.r * Math.pow((1 - abs), 1.5))
             if (color.r > 255) {
-                color.r = 255
+                color.r = 255;
             }
             // end evil math magic
 

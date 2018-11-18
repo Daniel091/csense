@@ -11,8 +11,10 @@ chrome.storage.onChanged.addListener(function (changes, namespace) {
 
             if (data.shouldRun) {
                 task_timer = setInterval(snap_fun, 1000);
+                chrome.browserAction.setIcon({path: "images/on/csense_16x16_on.png"});
             } else {
                 clearInterval(task_timer);
+                chrome.browserAction.setIcon({path: "images/off/csense_16x16_off.png"});
             }
 
         });
@@ -26,6 +28,3 @@ function snap_fun() {
         });
     });
 }
-
-
-

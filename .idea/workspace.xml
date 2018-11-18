@@ -2,12 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4fa2132f-3118-46c8-a69e-d12914256e9f" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/chrome_extension/libs/color-thief.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/flask_server/main.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/flask_server/run_server.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/testing_page/api.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/testing_page/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/most_basic.py" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/chrome_extension/images/off/csense_128x128_off.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/chrome_extension/images/off/csense_16x16_off.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/chrome_extension/images/off/csense_32x32_off.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/chrome_extension/images/off/csense_48x48_off.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/chrome_extension/images/on/csense_128x128_on.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/chrome_extension/images/on/csense_16x16_on.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/chrome_extension/images/on/csense_32x32_on.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/chrome_extension/images/on/csense_48x48_on.png" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/chrome_extension/images/get_started128.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/chrome_extension/images/get_started16.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/chrome_extension/images/get_started32.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/chrome_extension/images/get_started48.png" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/chrome_extension/background_main.js" afterPath="$PROJECT_DIR$/chrome_extension/background_main.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/chrome_extension/lights.js" afterPath="$PROJECT_DIR$/chrome_extension/lights.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/chrome_extension/manifest.json" afterPath="$PROJECT_DIR$/chrome_extension/manifest.json" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,7 +32,28 @@
     <SUITE FILE_PATH="coverage/hackaz$api_key.coverage" NAME="api_key Coverage Results" MODIFIED="1542409053300" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf>
+      <file leaf-file-name="manifest.json" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/chrome_extension/manifest.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="375">
+              <caret line="25" column="21" lean-forward="true" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="background_main.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/chrome_extension/background_main.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="19" column="11" lean-forward="true" selection-start-line="19" selection-start-column="11" selection-end-line="19" selection-end-column="11" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -54,6 +85,7 @@
       <find>shouldRun</find>
       <find>get</find>
       <find>sendMessage</find>
+      <find>color</find>
     </findStrings>
     <replaceStrings>
       <replace>API_KEY</replace>
@@ -79,10 +111,10 @@
         <option value="$PROJECT_DIR$/chrome_extension/popup.html" />
         <option value="$PROJECT_DIR$/chrome_extension/tab_script.js" />
         <option value="$PROJECT_DIR$/chrome_extension/contentScript.js" />
-        <option value="$PROJECT_DIR$/chrome_extension/manifest.json" />
-        <option value="$PROJECT_DIR$/chrome_extension/background_main.js" />
         <option value="$PROJECT_DIR$/chrome_extension/all_switch.js" />
         <option value="$PROJECT_DIR$/chrome_extension/lights.js" />
+        <option value="$PROJECT_DIR$/chrome_extension/manifest.json" />
+        <option value="$PROJECT_DIR$/chrome_extension/background_main.js" />
       </list>
     </option>
   </component>
@@ -124,12 +156,32 @@
               <item name="hackaz" type="462c0819:PsiDirectoryNode" />
               <item name="chrome_extension" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="hackaz" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hackaz" type="462c0819:PsiDirectoryNode" />
+              <item name="chrome_extension" type="462c0819:PsiDirectoryNode" />
+              <item name="images" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hackaz" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hackaz" type="462c0819:PsiDirectoryNode" />
+              <item name="chrome_extension" type="462c0819:PsiDirectoryNode" />
+              <item name="images" type="462c0819:PsiDirectoryNode" />
+              <item name="off" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hackaz" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hackaz" type="462c0819:PsiDirectoryNode" />
+              <item name="chrome_extension" type="462c0819:PsiDirectoryNode" />
+              <item name="images" type="462c0819:PsiDirectoryNode" />
+              <item name="on" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -139,11 +191,15 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/chrome_extension/example" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/chrome_extension/images/off" />
+      <recent name="$PROJECT_DIR$/chrome_extension/images" />
       <recent name="$PROJECT_DIR$/chrome_extension" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/chrome_extension/images/on" />
+      <recent name="$PROJECT_DIR$/chrome_extension/images/off" />
+      <recent name="$PROJECT_DIR$/chrome_extension/example" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -244,8 +300,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="719" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2657512" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26979" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -346,7 +403,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" column="43" lean-forward="false" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="43" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -378,13 +434,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/chrome_extension/background.js" />
-    <entry file="file://$PROJECT_DIR$/tests/most_basic.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/most_basic.py" />
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -415,34 +465,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/response">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/most_basic.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-33">
-          <caret line="52" column="18" lean-forward="true" selection-start-line="52" selection-start-column="18" selection-end-line="52" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testing_page/api.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/chrome_extension/libs/color-thief.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="29" column="3" lean-forward="false" selection-start-line="29" selection-start-column="3" selection-end-line="29" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/response" />
+    <entry file="file://$PROJECT_DIR$/tests/most_basic.py" />
+    <entry file="file://$PROJECT_DIR$/testing_page/api.js" />
+    <entry file="file://$PROJECT_DIR$/chrome_extension/libs/color-thief.min.js" />
     <entry file="file://$PROJECT_DIR$/chrome_extension/example/test.html" />
     <entry file="file://$PROJECT_DIR$/chrome_extension/main.js" />
     <entry file="file://$PROJECT_DIR$/chrome_extension/background.js" />
@@ -458,7 +484,7 @@
         <state relative-caret-position="285">
           <caret line="19" column="30" lean-forward="true" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -467,15 +493,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" column="43" lean-forward="false" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/chrome_extension/lights.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="15" lean-forward="false" selection-start-line="0" selection-start-column="15" selection-end-line="0" selection-end-column="15" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -490,18 +507,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/chrome_extension/background_main.js">
+    <entry file="file://$PROJECT_DIR$/chrome_extension/lights.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
-          <caret line="12" column="26" lean-forward="true" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
+          <caret line="12" column="30" lean-forward="false" selection-start-line="12" selection-start-column="30" selection-end-line="12" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chrome_extension/background_main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="11" lean-forward="true" selection-start-line="19" selection-start-column="11" selection-end-line="19" selection-end-column="11" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/chrome_extension/manifest.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+        <state relative-caret-position="375">
+          <caret line="25" column="21" lean-forward="true" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
           <folding />
         </state>
       </provider>

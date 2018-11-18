@@ -24,10 +24,10 @@
     "default_popup": "popup.html",
     "default_title": "CSense-Extension",
     "default_icon": {
-      "16": "images/get_started16.png",
-      "32": "images/get_started32.png",
-      "48": "images/get_started48.png",
-      "128": "images/get_started128.png"
+      "16": "images/off/csense_16x16_off.png",
+      "32": "images/off/csense_32x32_off.png",
+      "48": "images/off/csense_48x48_off.png",
+      "128": "images/off/csense_128x128_off.png"
     }
   },
   "content_scripts": [
@@ -43,10 +43,10 @@
     }
   ],
   "icons": {
-    "16": "images/get_started16.png",
-    "32": "images/get_started32.png",
-    "48": "images/get_started48.png",
-    "128": "images/get_started128.png"
+    "16": "images/off/csense_16x16_off.png",
+    "32": "images/off/csense_32x32_off.png",
+    "48": "images/off/csense_48x48_off.png",
+    "128": "images/off/csense_128x128_off.png"
   },
   "manifest_version": 2
 }
