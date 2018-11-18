@@ -1,55 +1,72 @@
-var IP = "131.159.198.85"
-var url = "http://" + IP + "/api"
-var API_KEY = "FA9119AFBC"
+chrome.runtime.onMessage.addListener(
+    function (request, sender, sendResponse) {
+        if (request.web_color_avg) {
+            console.log(request.web_color_avg);
+
+            let color = request.web_color_avg;
+            setGroupRGBById("3", color.r / 255, color.g / 255, color.b / 255, .6, 3.);
+        }
+    }
+);
+
+
+/*
+ CUSTOM LIGHTS API
+ */
+
+var IP = "131.159.198.85";
+var url = "http://" + IP + "/api";
+var API_KEY = "FA9119AFBC";
 
 function get(query) {
     var xhttp = new XMLHttpRequest();
     xhttp.open("GET", url + "/" + API_KEY + "/" + query, false);
-    xhttp.send(); 
+    xhttp.send();
     return xhttp.responseText;
 }
-function put(query, data){
+
+function put(query, data) {
     var xhttp = new XMLHttpRequest();
     xhttp.open("PUT", url + "/" + API_KEY + "/" + query, false);
-    xhttp.setRequestHeader('Content-type','application/json; charset=utf-8');
+    xhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
     xhttp.send(data);
     return xhttp.responseText;
 }
 
 function getGroupId(groupName) {
     groups = JSON.parse(get("groups"));
-    for(group in groups){
-        if(JSON.stringify(groups[group].name) == groupName){
+    for (group in groups) {
+        if (JSON.stringify(groups[group].name) == groupName) {
             return group
         }
     }
     return -1
 }
 
-function setGroupState(groupId, data){
-    return JSON.parse(put("/groups/"+groupId+"/action/", JSON.stringify(data)));
+function setGroupState(groupId, data) {
+    return JSON.parse(put("/groups/" + groupId + "/action/", JSON.stringify(data)));
 }
 
-function setGroupHSVById(groupId, h, s, v){
-    console.log(groupId+ ": " + JSON.stringify({ 'bri': v, 'hue' : h, 'sat' : s}));
-    return JSON.parse(put("/groups/"+groupId+"/action/", JSON.stringify({ 'bri': v, 'hue' : h, 'sat' : s})));
+function setGroupHSVById(groupId, h, s, v) {
+    console.log(groupId + ": " + JSON.stringify({'bri': v, 'hue': h, 'sat': s}));
+    return JSON.parse(put("/groups/" + groupId + "/action/", JSON.stringify({'bri': v, 'hue': h, 'sat': s})));
 }
 
-function setGroupHSVByName(groupName, h, s, v){
+function setGroupHSVByName(groupName, h, s, v) {
     return setGroupHSVById(getGroupId(groupName), h, s, v);
 }
 
-function setGroupStateByName(groupName, data){
+function setGroupStateByName(groupName, data) {
     return setGroupState(getGroupId(groupName), data);
 }
 
-function getAllGroups(){
+function getAllGroups() {
     var group_names = []
     groups = JSON.parse(get("/groups/"));
-    for(group in groups){
+    for (group in groups) {
         group_names = group_names.concat(group.name)
     }
-    
+
     return group_names
 }
 
@@ -86,25 +103,31 @@ function getAllGroups(){
 function rgb2hsv(r, g, b) {
 //   r /= 255, g /= 255, b /= 255;
 
-  var max = Math.max(r, g, b), min = Math.min(r, g, b);
-  var h, s, v = max;
+    var max = Math.max(r, g, b), min = Math.min(r, g, b);
+    var h, s, v = max;
 
-  var d = max - min;
-  s = max == 0 ? 0 : d / max;
+    var d = max - min;
+    s = max == 0 ? 0 : d / max;
 
-  if (max == min) {
-    h = 0; // achromatic
-  } else {
-    switch (max) {
-      case r: h = (g - b) / d + (g < b ? 6 : 0); break;
-      case g: h = (b - r) / d + 2; break;
-      case b: h = (r - g) / d + 4; break;
+    if (max == min) {
+        h = 0; // achromatic
+    } else {
+        switch (max) {
+            case r:
+                h = (g - b) / d + (g < b ? 6 : 0);
+                break;
+            case g:
+                h = (b - r) / d + 2;
+                break;
+            case b:
+                h = (r - g) / d + 4;
+                break;
+        }
+
+        h /= 6;
     }
 
-    h /= 6;
-  }
-
-  return {'h': h, 's': s, 'v' :v };
+    return {'h': h, 's': s, 'v': v};
 }
 
 function hsv2rgb(h, s, v) {
@@ -118,12 +141,24 @@ function hsv2rgb(h, s, v) {
     q = v * (1 - f * s);
     t = v * (1 - (1 - f) * s);
     switch (i % 6) {
-        case 0: r = v, g = t, b = p; break;
-        case 1: r = q, g = v, b = p; break;
-        case 2: r = p, g = v, b = t; break;
-        case 3: r = p, g = q, b = v; break;
-        case 4: r = t, g = p, b = v; break;
-        case 5: r = v, g = p, b = q; break;
+        case 0:
+            r = v, g = t, b = p;
+            break;
+        case 1:
+            r = q, g = v, b = p;
+            break;
+        case 2:
+            r = p, g = v, b = t;
+            break;
+        case 3:
+            r = p, g = q, b = v;
+            break;
+        case 4:
+            r = t, g = p, b = v;
+            break;
+        case 5:
+            r = v, g = p, b = q;
+            break;
     }
     return {
         r: Math.round(r * 255),
@@ -138,11 +173,11 @@ function hsv2rgb(h, s, v) {
  * These facilitate a nonlinear mapping for value and saturation
  * which may be more pleasing to the eye
  */
-function setGroupRGBById(groupId, r, g, b, gamma, delta){
+function setGroupRGBById(groupId, r, g, b, gamma, delta) {
     hsv = rgb2hsv(r, g, b);
-    return setGroupHSVById(groupId, hsv.h*65536, Math.pow(hsv.s, gamma)*255, Math.pow(hsv.v, delta)*255);
+    return setGroupHSVById(groupId, hsv.h * 65536, Math.pow(hsv.s, gamma) * 255, Math.pow(hsv.v, delta) * 255);
 }
 
-function setGroupRGBByName(groupName, r, g, b, gamma){
-    return setGroupRGBById(getGroupId(groupName), r*65536, g*255, b*255);
+function setGroupRGBByName(groupName, r, g, b, gamma) {
+    return setGroupRGBById(getGroupId(groupName), r * 65536, g * 255, b * 255);
 }

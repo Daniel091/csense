@@ -5,6 +5,7 @@
         #changeColor {
             margin-top: 10px;
         }
+
         #changeColor {
             height: 30px;
             width: 30px;
@@ -16,7 +17,7 @@
             width: 150px;
         }
 
-        .sw_con{
+        .sw_con {
             display: flex;
             margin-top: 5px;
             margin-bottom: 5px;
@@ -25,10 +26,6 @@
         .sw_label {
             margin-top: 5px;
             margin-left: 5px;
-        }
-
-        button {
-            
         }
 
         .switch {
@@ -92,7 +89,7 @@
         .slider.round:before {
             border-radius: 50%;
         }
-        
+
         .slidecontainer {
             width: 100%;
         }
@@ -128,20 +125,19 @@
 
 
 <div class="slidecontainer">
-  <input type="range" min="1" max="65536" value="128" class="slider_hsv" id="h_slider">
-  <input type="range" min="1" max="255" value="128" class="slider_hsv" id="s_slider">
-  <input type="range" min="1" max="255" value="50" class="slider_hsv" id="v_slider">
+    <input type="range" min="1" max="65536" value="128" class="slider_hsv" id="h_slider">
+    <input type="range" min="1" max="255" value="128" class="slider_hsv" id="s_slider">
+    <input type="range" min="1" max="255" value="50" class="slider_hsv" id="v_slider">
 </div>
 
 
-
 <button id="changeColor"></button>
-<button id="message-button">Send message</button>
 <div id="screen_con"></div>
-<script src="lights.js"></script>
+
+
+<!--<script src="lights.js"></script>-->
 <script src="all_switch.js"></script>
 <script src="hsv_sliders.js"></script>
-<script src="background.js"></script>
 <script src="tab_script.js"></script>
 </body>
 </html>
