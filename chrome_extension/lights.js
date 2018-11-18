@@ -3,7 +3,17 @@ chrome.runtime.onMessage.addListener(
         if (request.web_color_avg) {
             console.log(request.web_color_avg);
 
-            let color = request.web_color_avg;
+            var color = request.web_color_avg;
+
+            //fuck up colors a bit (increases red channel when overall intensity is small)
+            // evil math magic etc.
+            abs = Math.sqrt(color.r * color.r + color.g * color.g + color.b * color.b) / 442.;
+            color.r = parseInt(color.r + color.r * Math.pow((1 - abs), 1.5))
+            if (color.r > 255) {
+                color.r = 255
+            }
+            // end evil math magic
+
             setGroupRGBById("3", color.r / 255, color.g / 255, color.b / 255, .6, 3.);
         }
     }
