@@ -1,16 +1,4 @@
 /*
- BUTTON COLOR CHANGER TEST
- */
-
-let changeColor = document.getElementById('changeColor');
-
-// sets btn color to color from storage
-chrome.storage.sync.get('color', function (data) {
-    changeColor.style.backgroundColor = data.color;
-    changeColor.setAttribute('value', data.color);
-});
-
-/*
  AUTO COLOR SWITCH STUFF
  */
 
@@ -28,7 +16,7 @@ document.body.onload = function () {
     chrome.storage.sync.get('shouldRun', function (data) {
         auto_switch.checked = data.shouldRun;
     });
-    
+
     chrome.storage.sync.get('lights_on_off', function (data) {
         all_switch.checked = data.lights_on_off;
     });

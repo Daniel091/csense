@@ -10,11 +10,11 @@ chrome.storage.onChanged.addListener(function (changes, namespace) {
         chrome.storage.sync.get('shouldRun', function (data) {
 
             if (data.shouldRun) {
-                task_timer = setInterval(snap_fun, 1000);
-                chrome.browserAction.setIcon({path: "images/on/csense_16x16_on.png"});
+                task_timer = setInterval(snap_fun, 400);
+                chrome.browserAction.setIcon({path: "images/on/csense_128x128_on.png"});
             } else {
                 clearInterval(task_timer);
-                chrome.browserAction.setIcon({path: "images/off/csense_16x16_off.png"});
+                chrome.browserAction.setIcon({path: "images/off/csense_128x128_off.png"});
             }
 
         });
